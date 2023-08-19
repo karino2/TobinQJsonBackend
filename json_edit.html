@@ -1,0 +1,86 @@
+<html>
+  <body>
+      <script>
+        const $ = document
+        const GE = (id) => { return document.getElementById(id) }
+        const CE = (name) => { return document.createElement(name) }
+
+/**
+ * @typedef TobinQItem
+ * @type {object}
+ * @property {string} _docId
+ * @property {string} title
+ * @property {string} _description
+ * @property {string} graphId
+ * @property {string} _script
+ * @property {number} _updatedAt
+ */
+$.body.onload = ()=> {
+  /** @type {HTMLTextAreaElement} */
+  const jsonArea = GE('jsonarea')
+  /** @type {HTMLButtonElement} */
+  const loadButton = GE('load-json')
+  /** @type {HTMLButtonElement} */
+  const submitButton = GE('submit-button')
+  /** @type {HTMLSelectElement} */
+  const tselect = GE('title-selector')
+  /** @type {HTMLTextAreaElement} */
+  const descArea = GE('desc-area')
+  /** @type {HTMLTextAreaElement} */
+  const sourceArea = GE('source-area')
+  /** @type {HTMLInputElement} */
+  const titleInput = GE('title')
+  /** @type {HTMLInputElement} */
+  const graphInput = GE('graphId')
+
+  /** @type {TobinQItem[]} */
+  let json = []
+
+  const onSelect = () => {
+    const index = tselect.selectedIndex
+    const obj = json[index]
+    titleInput.value = obj.title
+    descArea.value = obj._description
+    sourceArea.value = obj._script
+    graphInput.value = obj.graphId
+  }
+
+  loadButton.addEventListener('click', ()=> {
+    json = JSON.parse(jsonArea.value)
+    tselect.options.length = 0
+    
+    for(const [i, obj] of json.entries()) {
+      const opt = CE('option')
+      opt.text = obj.title
+      opt.value = i
+      tselect.add(opt)
+    }
+    onSelect()
+  })
+  tselect.addEventListener('change', onSelect)
+  submitButton.addEventListener('click', ()=> {
+    const index = tselect.selectedIndex
+    let obj = json[index]
+    obj.title = titleInput.value
+    obj._description = descArea.value
+    obj._script = sourceArea.value 
+    obj.graphId = graphInput.value
+    obj._updatedAt = (new Date()).getTime()
+
+    json[index] = obj
+    jsonArea.value = JSON.stringify(json)
+  })
+}      
+      </script>
+      <textarea id="jsonarea" rows="10" cols="180"></textarea><br>
+    <button id="load-json">Load</button><br>
+    <label for="title-selector">タイトル: </label>
+    <select id="title-selector"></select><br>
+    <input id="title" type="text" size="100"/><br>
+    <input id="graphId" type="text" size="100"/><br>
+    <textarea id="desc-area" rows="10" cols="180"></textarea><br>
+    <textarea id="source-area" rows="10" cols="180"></textarea><br>
+    <button id="submit-button">Submit</button><br>
+
+  </body>
+</html>
