@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "out",
+    "sourceMap": true,
+    "lib": [
+      "ES2021"
+    ]
+  }
+}
