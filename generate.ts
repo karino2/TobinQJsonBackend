@@ -26,7 +26,8 @@ const toHtmlPage = async(entry: Entry) => {
   let content = encoder.encode(entry._description)
   let contentHtml = content.replaceAll("\n", "<br>")
   let title = encoder.encode(entry.title)
-  let imgUrl = `${rootUrl}/imgs/${entry.graphId}.png`
+  let relativeImgUrl = `imgs/${entry.graphId}.png`
+  let imgUrl = `${rootUrl}/${relativeImgUrl}`
 
   return `<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
   <html>
@@ -64,7 +65,7 @@ const toHtmlPage = async(entry: Entry) => {
   <h1>${title}</h1>
   <hr>
   
-  <img class="chartImgClass" id="chartImg" src="${imgUrl}">
+  <img class="chartImgClass" id="chartImg" src="../${relativeImgUrl}">
   <div id="descriptionDiv">
 ${contentHtml}
   </div>
@@ -72,7 +73,7 @@ ${contentHtml}
   <div class="footer">
   <hr>
   <ul>
-  <li><a href="/index.html">このサイトについて</a>
+  <li><a href="../index.html">このサイトについて</a>
   <li>「スマホに統計のグラフが降ってくる！」は下のバナーから<br><a href='https://play.google.com/store/apps/details?id=com.livejournal.karino2.tobinq.app&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height="80"/></a>
   </ul>
   </div>
