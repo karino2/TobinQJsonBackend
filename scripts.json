@@ -107,12 +107,12 @@
   },
   {
     "_docId": "i1BLi0N7yW0H2tRCRYtCZ3d1dnPHdtmg",
-    "title": "日本の失業率。",
-    "_description": "失業率をplot。\n月次データから年次データに変換の計算を行っている。\n季節調整済み。\n\n1983年以降から年齢階級別の失業率が揃う為、そこからのプロットを行った。\n2010年以降急激に下がり続け、今ではバブル崩壊前の水準になりつつある。",
+    "title": "日本の失業率",
+    "_description": "失業率をplot。\n月次データから年次データに変換の計算を行っている。\n季節調整済み。\n\n1983年以降から年齢階級別の失業率が揃う為、そこからのプロットを行った。\n2010年以降急激に下がり続け、今ではバブル崩壊前の水準になりつつある。\n2020年から少し上がっているが依然としてかなり低い水準にとどまっている。",
     "_checkUpdatesAfter": 1552994511057,
     "_script": "url <- Qurl(\"年齢階級別完全失業率(季節調整済み)\")\ndf <- read.csv(url)\ntotalName <- \"男女計: Total\"\ntotal <- df[[totalName]]\nn <- (length(total)/12)\ny <- 1:n\nfor(i in 1:n) { b <- (12*(i-1))+1; e <- (12*(i-1))+12; y[i] <- mean(total[b:e]) }\nplot(1970:(1970+n-1), y, main=\"失業率（季節調整済み）\", xlab=\"年\", ylab=\"失業率(%)\", ylim=c(0, 7), type=\"b\")",
-    "graphId": "23smVNCtZD44SFc2Zk8BD0YnwhuHSXPC",
-    "_updatedAt": 1552994735216,
+    "graphId": "japan_unemployment_adjusted",
+    "_updatedAt": 1692525199353,
     "_createdAt": 1397207170326
   },
   {
