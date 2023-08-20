@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "tsc -p .",
-    "start": "node out/generate.js"
+    "generate": "node out/generate.js"
   },
   "dependencies": {
     "html-entities": "^2.4.0"
