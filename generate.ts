@@ -44,7 +44,7 @@ const toHtmlPage = async(entry: Entry) => {
   <meta property="og:type" content="article" />
   <meta property="og:image" content="${imgUrl}" />
   <meta property="og:description" content="${content}" />
-  <title>統計グラフ!</title>
+  <title>${title} at 統計グラフ!</title>
   
   <style type="text/css">
   img.chartImgClass {
