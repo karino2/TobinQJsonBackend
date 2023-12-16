@@ -4,7 +4,7 @@
     "title": "就業者数のうち65歳以上の占める割合",
     "_description": "高齢化の文脈では65歳までの人口を生産年齢人口として、それと65歳以上の人口の比率を良く議論します。\n一方で、周りを見ていると65歳以上の労働者も増えていそうな気もします。\n\nそこで、ここでは単純に、全就業者数に占める65歳以上の就業者数の割合を労働力調査から見てみましょう。（季節調整値）\n\nグラフから、2013年頃から大きく増えているのが見て取れます。\nここ数年は増加の傾きは小さくなり、2022年は13.5%ほどとなっています。\n\n高齢者が元気に働いてくれれば高齢化の問題を軽減してくれるのは間違いありません。\nここ数年は、かなりうまく高齢者に働いてもらう事に成功しているように見えます。",
     "graphId": "labor_ratio",
-    "_script": "url <- Qurl(\"年齢階級別就業者数\")\ndf <- read.csv(url)\nsumMonths <- function(total) {\n n <- (length(total)/12)\n y <- 1:n\n for(i in 1:n) { b <- (12*(i-1))+1; e <- (12*(i-1))+12; y[i] <- mean(total[b:e]) }\n y\n}\nytotal <- sumMonths(df[[\"男女計: Total\"]])\nyover <- sumMonths(df[[\"男女計: 65歳以上\"]])\nyratio <- 100*yover/ytotal\nplot(1968:(1968+(length(yratio)-1)), yratio, main=\"65歳以上の就業者数\", ylab=\"%\" ylim=c(0,20),  type=\"b\")",
+    "_script": "url <- Qurl(\"年齢階級別就業者数\")\ndf <- read.csv(url)\nsumMonths <- function(total) {\n n <- (length(total)/12)\n y <- 1:n\n for(i in 1:n) { b <- (12*(i-1))+1; e <- (12*(i-1))+12; y[i] <- mean(total[b:e]) }\n y\n}\nytotal <- sumMonths(df[[\"男女計: Total\"]])\nyover <- sumMonths(df[[\"男女計: 65歳以上\"]])\nyratio <- 100*yover/ytotal\nplot(1968:(1968+(length(yratio)-1)), yratio, main=\"65歳以上の就業者数\", ylab=\"%\", ylim=c(0,20),  type=\"b\")",
     "_updatedAt": 1702728385503,
     "_createdAt": 1702724807549
   },
