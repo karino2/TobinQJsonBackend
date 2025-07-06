@@ -5,8 +5,8 @@
     "_description": "物価としては最も確かだが更新の頻度が遅い、GDPデフレータを見てみましょう。\n\n1995年以降、2013年ころまでおおむね0を下回っていたのがわかります。いわゆるデフレという状態ですね。\n2014年からは上下はあるけれどおおむね0は超えていますが、2%くらいが好ましいと言われる事の多いインフレ率なので、2022年までは低めでした。\n\n2023年は大きく上昇し、4%くらい、2024年も3%くらいとなっています。\n3%が物価高かどうかは微妙な所ですが、4%はインフレだったと言って良い数字でしょう。\nここ2年は少なくともデフレでは無い、とは言えそうです。\n\nなお、ブランシャールなどがターゲットを4%に上げるのはどうか？と提言して話題になった事がありますが、それが2023年くらいの物価上昇率という事ですね。",
     "graphId": "deflator_ratio",
     "_script": "url <- Qurl(\"GDPデフレータ\")\ndf <- read.csv(url)\nyears = df[[\"暦年\"]]\nynum = length(years)\ny1 = years[2:ynum]\ndefl = df[[\"デフレータ\"]]\nddiff = 100*defl[2:ynum]/defl[1:(ynum-1)]-100\nplot(y1, ddiff,ylim=c(-10,25), main=\"デフレータ増分\", xlab=\"年\", ylab=\"%\", type=\"b\")\nlines(y1, rep(0, length(y1)))\nlines(y1, rep(5, length(y1)))\nlegend(2000, 100000, c(\"デフレータ\",\"0.\", \"5\"))",
-    "_updatedAt": 1751688700586,
-    "_createdAt": 1751688700586
+    "_updatedAt": 1751688734721,
+    "_createdAt": 1702724807549
   },
   {
     "_docId": "labor_ratio",
@@ -147,10 +147,10 @@
     "_docId": "nMOGwQc7E6SuQ4a2SwLlrAvQTtkZpKop",
     "title": "税収の項目別推移",
     "_description": "2014年度の消費税の増税の結果、税収がどうなったかを見ておきましょう。国税庁の納税申告額から作りました。\n消費税は1997年の4月1日から5%に、2014年の4月1日から8%になりました。\n1997年度は所得税や法人税が落ち込み、税収全体としては減収になったのが消費税に反対する理由の一つとして良く挙げられていました。\n2014年度は消費税分は4.1兆円程増えています。また、所得税、法人税も増えています。\n2016年度に所得税は減少していますが、2014年度から見ると増加した範囲です。法人税はほぼ横ばい、消費税は大きく上昇し、2014年度の増税前と比較すると7兆円弱の増加となっています。\n7兆円の税収がどんな物かの参考としては、社会保障費の国庫負担が現在約30兆円、近年の財政赤字は30兆円～50兆円、という所です。",
-    "graphId": "ujahaowDbn58bLTHP3F1gcUfYC8BSQu3",
+    "graphId": "tax_by_items",
     "_checkUpdatesAfter": 1567040519820,
     "_script": "url <- Qurl(\"税収の推移\")\ndf <- read.csv(url)\n\ncompany <- df[[\"法人税額\"]]/100\nsyotoku <- (df[[\"申告所得税\"]]+df[[\"源泉所得税\"]])/100\nsyouhi <- df[[\"消費税額\"]]/100\n\nyear <- df[[\"年度\"]]\nfrom_syouhizei <- year > 1989\nplot(year[from_syouhizei], company[from_syouhizei], main=\"税収の推移\", xlab=\"年度\", ylim=c(0, 300000), ylab=\"億円\", type=\"b\")\nlines(year[from_syouhizei], syotoku[from_syouhizei], type=\"b\")\nlines(year[from_syouhizei], syouhi[from_syouhizei], type=\"b\")\nlegend(2000, 0, c(\"法人税\", \"所得税\", \"消費税\"))\n\n\n\ng_table <- NULL \nQurl2 <- function(name) {\n  if(is.null(g_table)) {\n    g_table <- read.csv('https://docs.google.com/spreadsheet/pub?key=0AnKwf3jHs-oIdEE4YnJ3dERMclRqazV0ZjJuN0k0UWc&single=true&gid=0&output=csv')\n  }\n  as.character(g_table[g_table[['name']]==name,][['url']])\n}",
-    "_updatedAt": 1567040568394,
+    "_updatedAt": 1751771901472,
     "_createdAt": 1465227888374
   },
   {
