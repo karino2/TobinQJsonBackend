@@ -176,11 +176,11 @@
   {
     "_checkUpdatesAfter": 1398158573474,
     "title": "社会保障費の内訳",
-    "graphId": "6DmnIH5JBDk5B8szTgOgPFkWHelVwtum",
+    "graphId": "socialsec_by_item",
     "_docId": "snskEuRmyMpYyvC8FBOsP6FkVj9vUW1S",
     "_description": "社会保障費が増加している、という事ですが、具体的にはその中の何が増加しているのでしょうか？\n\nここでは合計の社会保障費のうち、寄与の大きな年金と医療をプロットしてみました。\n医療費は90年代の中頃までは大きく伸びていた項目ですが、95年後半からは比較的傾きは落ち着いてきています（近年また増加の兆しが見えますが）。\n想像出来るように、年金は大きく伸びている項目です。\n両者の和は社会保障費のかなりの部分を説明出来ますが、それ以外の項目が伸びている事も、「合計」と「医療＋年金」の差が広がっている事から想像出来ます。\n\n高齢化を考えると伸びていく事はある程度仕方ないと言えますが、この伸び方を見ると、どの位の水準に収めるべきなのか、というのも考えていく必要がありそうです。",
     "_script": "url <- Qurl(\"社会保障費\")\nsocial <- read.csv(url)\n\nsocial_len <- length(social[[\"年度\"]])\nplot( social[[\"年度\"]] , social[[\"計\"]], ylab=\"1億円\", main=\"社会保障費の内訳\", ylim=c(0, max( social[[\"計\"]] )))\nlines(social[[\"年度\"]], social[[\"医療\"]])\nlines(social[[\"年度\"]], social[[\"年金\"]])\nlines(social[[\"年度\"]], social[[\"年金\"]]+social[[\"医療\"]])\nlegend(2000, 0, c(\"合計\",\"医療\",\"年金\",\"医療+年金\"))",
-    "_updatedAt": 1435637718392,
+    "_updatedAt": 1751778421446,
     "_createdAt": 1398148079573
   },
   {
